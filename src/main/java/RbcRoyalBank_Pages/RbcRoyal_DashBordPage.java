@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 
 public class RbcRoyal_DashBordPage extends BasePage {
 
+    private static final String HOME_PAGE_URL = "https://www.rbcroyalbank.com/";
+
     By Investments=By.xpath("//a[text()='Investments' and @data-dig-action='Click Button']");
     By Investments_mutualFunds=By.xpath("//a[contains(@data-dig-label,'Investments - Mutual Funds')]");
     By Investments_AllInvestmentTools=By.xpath("//a[contains(@data-dig-label,'Investments - All Investment Tools & calculators')]");
@@ -19,16 +21,18 @@ public class RbcRoyal_DashBordPage extends BasePage {
     public RbcRoyal_DashBordPage(WebDriver driver) {
         super(driver);
     }
-    public void InvestmentsClick() {
-        RbcRoyal_DashBordPage rbcRoyal_dashBordPage = new RbcRoyal_DashBordPage(driver);
-       WebElementUtility.implicitWait(driver, 10);
-        WebElementUtility.mouseHover(driver, Investments);
-        WebElementUtility.mouseHoverAndClick(driver, Investments_mutualFunds);
+
+    public void navigateTOHomePage() {
+        driver.get(HOME_PAGE_URL);
     }
+
+    public void InvestmentsClick() {
+        WebElementUtility.clickElement(driver, Investments);
+
+    }
+
     public void AllInvestmentToolsClick() {
-        RbcRoyal_DashBordPage rbcRoyal_dashBordPage = new RbcRoyal_DashBordPage(driver);
-        WebElementUtility.mouseHover(driver, Investments);
-        WebElementUtility.mouseHoverAndClick(driver, Investments_AllInvestmentTools);
+        WebElementUtility.clickElement(driver, Investments_AllInvestmentTools);
     }
 
 

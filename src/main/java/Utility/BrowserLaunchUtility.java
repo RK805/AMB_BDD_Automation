@@ -14,9 +14,9 @@ public class BrowserLaunchUtility extends BasePage{
         super(driver);
     }
 
-    public static WebDriver getLocalDriver(String browser) {
+    public static WebDriver getLocalDriver(WebDriver driver,String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
-            return  new ChromeDriver();
+            return  driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("firefox")) {
             return new FirefoxDriver();
         }

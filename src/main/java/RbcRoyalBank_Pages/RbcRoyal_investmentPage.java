@@ -1,5 +1,6 @@
 package RbcRoyalBank_Pages;
 
+import Utility.BasePage;
 import Utility.BrowserUtility;
 import Utility.WebElementUtility;
 import org.openqa.selenium.By;
@@ -11,8 +12,17 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RbcRoyal_investmentPage {
+public class RbcRoyal_investmentPage extends BasePage {
+
     private WebDriver driver;
+
+    public RbcRoyal_investmentPage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+    }
+
+    public static By  Investments = By.xpath("//a[text()='Investments' and @data-dig-action='Click Button']");
+    public static By Investments_mutualFunds = By.xpath("//a[@aria-controls='section-content-mutual-funds-etfs-stocks']");
     public static  By MutualFunds = By.xpath("//h1[text()='Mutual Funds']");
     public static  By InvestmentPerformanceSnapshot = By.xpath("//span[text()='Investment Performance Snapshot']/..");
     public static  By InvestmentPerformanceSnapshotText = By.xpath("//h1[text()='Investment Performance Snapshot']");
@@ -82,228 +92,146 @@ public class RbcRoyal_investmentPage {
     public static By returnValue = By.xpath("//button[text()='Calculate Return Value']");
     public static By graf = By.xpath("//*[contains(@class,'highcharts-markers highcharts-series') and @role='region'][1]/*");
 
-    // utilityClass utility = new utilityClass();
+    public void clickMutualFunds() {
+        WebElementUtility.clickElement(driver, Investments);
+        WebElementUtility.clickElement(driver,Investments_mutualFunds);
+    }
 
+    public void clickInvestmentPerformanceSnapshot() {
+        WebElementUtility.clickElement(driver, InvestmentPerformanceSnapshot);
+    }
 
-    public String getMutualFundsText() {
-        return driver.findElement(MutualFunds).getText();
+    public void waitForInvestmentPerformanceSnapshotText() {
+        WebElementUtility.waitForElementVisible(driver, InvestmentPerformanceSnapshotText, 10);
     }
-    public void InvestmentPerformanceSnapshotClick(WebDriver driver) {
-        WebElementUtility.JSclickElement(driver, InvestmentPerformanceSnapshot);
+
+    public void enterFundInPlaceHolder(String fundName) {
+        WebElementUtility.enterText(driver, placeHolder, fundName);
     }
-    // Switch to the new tab opened by clicking the Investment Performance Snapshot
-    public void switchToNewTab(WebDriver driver) {
-        BrowserUtility.switchToTabByIndex(driver, 1);
-    }
-    public String getInvestmentPerformanceSnapshotText() {
-        return WebElementUtility.getElementText(driver, InvestmentPerformanceSnapshotText);
-    }
-    public void PlaceHolderClick(WebDriver driver, By placeHolder, By ListOfThePlaceHolder) {
-        WebElementUtility.clickElement(driver, placeHolder);
-        List<WebElement> listHolder = driver.findElements(ListOfThePlaceHolder);
-        for (WebElement element : listHolder) {
-            if (element.getText().trim().equalsIgnoreCase("BlueBay $U.S. Global High Yield Bond Fund (Canada)")) {
-                element.click();
-                break;
-            }
+
+    public List<String> getListOfPlaceHolderOptions() {
+        List<WebElement> options = WebElementUtility.findElements(driver, ListOfThePlaceHolder);
+        List<String> texts = new ArrayList<>();
+        for (WebElement option : options) {
+            texts.add(option.getText());
         }
+        return texts;
     }
 
-    public void SelectSeriesTextBoxClick(WebDriver driver, By SelectSeriesTextBox, By listOfTheSeriesTextBox) {
+    public void clickSelectSeriesTextBox() {
         WebElementUtility.clickElement(driver, SelectSeriesTextBox);
-        List<WebElement> seriesList = driver.findElements(listOfTheSeriesTextBox);
-        for (WebElement element : seriesList) {
-            if (element.getText().trim().equalsIgnoreCase("F")) {
-                element.click();
-                break;
-            }
+    }
+
+    public List<String> getListOfSeriesTextBoxOptions() {
+        List<WebElement> options = WebElementUtility.findElements(driver, listOfTheSeriesTextBox);
+        List<String> texts = new ArrayList<>();
+        for (WebElement option : options) {
+            texts.add(option.getText());
         }
+        return texts;
     }
 
-    public void InitialInvestmentClick(WebDriver driver, By InitialInvestment, String Investmentamount) {
-        WebElementUtility.clickElement(driver, InitialInvestment);
-        // WebElementUtility.clearElement(driver, InitialInvestment);
-        WebElementUtility.sendkeysToElement(driver, InitialInvestment, Investmentamount);
+    public void enterInitialInvestment(String value) {
+        WebElementUtility.enterText(driver, InitialInvestment, value);
     }
 
-    public void ContributionAmountClick(WebDriver driver, By ContributionAmount,String  Contributionamount) {
-        WebElementUtility.clickElement(driver, ContributionAmount);
-        WebElementUtility.sendkeysToElement(driver, ContributionAmount, Contributionamount);
+    public void enterContributionAmount(String value) {
+        WebElementUtility.enterText(driver, ContributionAmount, value);
     }
 
-    public void FrequencyTextBoxClick(WebDriver driver, By FrequencyTextBox, By selectingWeeklyOption) {
+    public void clickFrequencyTextBox() {
         WebElementUtility.clickElement(driver, FrequencyTextBox);
-        WebElementUtility.JSclickElement(driver, selectingWeeklyOption);
     }
 
-    public void AnnualIncreseClick(WebDriver driver, By AnnualIncrese, By DONotApplyOption) {
+    public void selectWeeklyOption() {
+        WebElementUtility.clickElement(driver, selectingWeeklyOption);
+    }
+
+    public void clickAnnualIncrease() {
         WebElementUtility.clickElement(driver, AnnualIncrese);
-        WebElementUtility.mouseHoverAndClick(driver, DONotApplyOption);
     }
 
-    public void WithdrawalAmountClick(WebDriver driver, By WithdrawalAmount, String WithDrawalamount) {
-        WebElementUtility.clickElement(driver, WithdrawalAmount);
-        WebElementUtility.sendkeysToElement(driver, WithdrawalAmount, WithDrawalamount);
+    public void selectDoNotApplyOption() {
+        WebElementUtility.clickElement(driver, DONotApplyOption);
     }
 
-    public void ViewFundPerformanceButtonClick(WebDriver driver, By ViewFundPerformanceButton) {
-        WebElementUtility.JSclickElement(driver, ViewFundPerformanceButton);
+    public void enterWithdrawalAmount(String value) {
+        WebElementUtility.enterText(driver, WithdrawalAmount, value);
     }
 
-    public String getInitialInvestmentPrice() {
-        return WebElementUtility.getElementText(driver, InitialInvestmentPrice);
+    public void clickViewFundPerformanceButton() {
+        WebElementUtility.clickElement(driver, ViewFundPerformanceButton);
     }
 
-    public String getAdditionalContributionsPrice() {
-        return WebElementUtility.getElementText(driver, AdditionalContributionsPrice);
+
+    public void clickAllInvestmentTools() {
+        WebElementUtility.clickElement(driver, allCalculate);
     }
 
-    public String getTotalDistributionsPrice() {
-        return WebElementUtility.getElementText(driver, TotalDistributionsPrice);
+    public void verifyAllInvestmentToolsPage() {
+        WebElementUtility.waitForElementVisible(driver, InvestmentCalculatorsAndToolsPage, 10);
     }
 
-    public String getRateOfReturnPrice1Value() {
-        return WebElementUtility.getElementText(driver, RateOfReturnPrice1Value);
+    public void clickRRSPInvestmentPerformanceSnapshot() {
+        WebElementUtility.clickElement(driver, RRSPValue);
     }
 
-    public String getRateOfReturnPrice2Value() {
-        return WebElementUtility.getElementText(driver, RateOfReturnPrice2Value);
+    public void verifyRRSPInvestmentPerformanceSnapshotPage() {
+        WebElementUtility.waitForElementVisible(driver, RRSPValueText, 10);
     }
 
-    public String getWithOutAnnuIncreasePrice() {
-        return WebElementUtility.getElementText(driver, WithOutAnnuIncreasePrice);
-    }
-    public String getWithAnnuIncerasePrice() {
-        return WebElementUtility.getElementText(driver, WithAnnuIncerasePrice);
-    }
-//    public void clearFields() {
-//        driver.findElement(InitialInvestment).clear();
-//
-//        driver.findElement(ContributionAmount).clear();
-//        driver.findElement(WithdrawalAmount).clear();
-//    }
-
-    // scenario:2
-    public String getInvestmentCalculatorsAndToolsPageText() {
-        return WebElementUtility.getElementText(driver, InvestmentCalculatorsAndToolsPage);
-    }
-    public void RRSPValueClick() {
-        WebElementUtility.JSclickElement(driver, RRSPValue);
-    }
-    public String getRRSPValueText() {
-        return WebElementUtility.getElementText(driver, RRSPValueText);
+    public void addFundToViewInvestmentPerformance(String investment, String contribution, String withdrawal) {
+        WebElementUtility.enterText(driver, InitialInvestment, investment);
+        WebElementUtility.enterText(driver, ContributionAmount, contribution);
+        WebElementUtility.enterText(driver, WithdrawalAmount, withdrawal);
     }
 
-    public void investmentValueClick(WebDriver driver,By investmentValue ,String investment) {
-        WebElementUtility.sendkeysToElement(driver, investmentValue, investment);
-    }
-    public void rateOfReturnClick(WebDriver driver,By rateOfReturn,String rate) {
-        WebElementUtility.sendkeysToElement(driver, rateOfReturn, rate);
-    }
-    public void numberOfyearsClick(WebDriver driver,By numberOfyears ,String years) {
-        WebElementUtility.sendkeysToElement(driver, numberOfyears, years);
-    }
-    public void CalculateButtonClick(WebDriver driver) {
-        WebElementUtility.JSclickElement(driver, CalculateButton);
-    }
-    public String getValueOfInvestment(WebDriver driver) {
-        return WebElementUtility.getElementText(driver, valueOfInvestment);
-    }
-//    public void recalculateButtonClick() {
-//        driver.findElement(recalculateButton).click();
-//    }
-
-    // scenario:3
-    public void RRSPCalculatorClick(WebDriver driver) {
-        WebElementUtility.JSclickElement(driver, RRSPCalculator);
-    }
-    public String getRRSPCalculatorText() {
-        return WebElementUtility.getElementText(driver, RRSPCalculatorText);
-    }
-    public void planToRetireYearClick(WebDriver driver, By planToRetireYear, String year) {
-       WebElementUtility.sendkeysToElement(driver, planToRetireYear, year);
-    }
-    public void contributionAmountClick(WebDriver driver, By contributionAmount, String amount) {
-       WebElementUtility.sendkeysToElement(driver, contributionAmount, amount);
-    }
-    public void contributionFrequencyClick(WebDriver driver, By contributionFrequency) {
-        WebElement frequencyField = driver.findElement(contributionFrequency);
-        Select s=new Select(frequencyField);
-        List<WebElement> listSelect=s.getOptions();
-        for(WebElement list:listSelect)
-        {
-            if(list.getText().trim().equals("Annually"))
-            {
-                list.click();
-            }
-
-        }
-    }
-    public void RateOfReturnClick(WebDriver driver, By RateOfReturn, String rate) {
-       WebElementUtility.sendkeysToElement(driver, RateOfReturn, rate);
-    }
-    public void calculateButtonClick(WebDriver driver) {
-        WebElementUtility.JSclickElement(driver, calculateButton);
-    }
-    public String getCouldSaveAmount() {
-        return WebElementUtility.getElementText(driver, couldSaveAmount);
+    public void checkPortfolioPerformanceSnapshot() {
+        WebElementUtility.waitForElementVisible(driver, InitialInvestmentPrice, 10);
     }
 
-    // scenario:4
-    public void GICReturnsClick(WebDriver driver) {
-        WebElementUtility.JSclickElement(driver, GICReturns);
+    public void clickFutureValueCalculators() {
+        WebElementUtility.clickElement(driver, RRSPCalculator);
     }
-    public String getGICReturnsText() {
-        return WebElementUtility.getElementText(driver, GICReturnsText);
-    }
-    public void InitialInvestmentAmountClick(WebDriver driver, By InitialInvestmentAmount, String Investmentamount) {
-        WebElementUtility.sendkeysToElement(driver, InitialInvestmentAmount, Investmentamount);
-    }
-    public void datePickerClick(WebDriver driver) {
-        WebElementUtility.JSclickElement(driver, datePicker);
-        WebElementUtility.mouseHoverAndClick(driver, years);
-        List<WebElement> yearList = driver.findElements(all_year);
-        for (WebElement element : yearList) {
-            if (element.getText().trim().equalsIgnoreCase("2025")) {
-                element.click();
-                break;
-            }
-        }
-        List<WebElement> monthList = driver.findElements(all_Month);
-        for (WebElement element : monthList) {
-            if (element.getText().trim().equalsIgnoreCase("May")) {
-                element.click();
-                break;
-            }
-        }
-        List<WebElement> dateList = driver.findElements(all_date);
-        for (WebElement element : dateList) {
-            if (element.getText().trim().equalsIgnoreCase("1")) {
-                element.click();
-                break;
-            }
-        }
-    }
-    public void GIC_redioButtenClick(WebDriver driver, By GIC_redioButten) {
-        WebElementUtility.selectRadioButton(driver, GIC_redioButten);
-    }
-    public void GIC_usMClick(WebDriver driver, By GIC_usM) {
-        WebElementUtility.selectRadioButton(driver, GIC_usM);
-    }
-    public void GICsClick(WebDriver driver, By GICs) {
-        WebElementUtility.selectRadioButton(driver, GICs);
-    }
-    public void returnValueClick(WebDriver driver, By returnValue) {
-        WebElementUtility.JSclickElement(driver, returnValue);
-    }
-    public void getReturnValue() {
-        Actions a=new Actions(driver);
-        List<WebElement> listG=driver.findElements(graf);
-        for(WebElement listgg:listG)
-        {
-            a.moveToElement(listgg).build().perform();
 
-        }
+    public void verifyFutureValueCalculatorsPage() {
+        WebElementUtility.waitForElementVisible(driver, RRSPCalculatorText, 10);
     }
+
+    public void addFutureValueCalculators(String currentInvestment, String rateOfReturn, String yearsUnit) {
+        WebElementUtility.enterText(driver, investmentValue, currentInvestment);
+//        WebElementUtility.enterText(driver, "rateOfReturn", rateOfReturn);
+        WebElementUtility.enterText(driver, numberOfyears, yearsUnit);
+    }
+
+    public void clickCalculate() {
+        WebElementUtility.clickElement(driver, CalculateButton);
+    }
+
+    public void checkValueOfInvestmentsFutureValueCalculators() {
+        WebElementUtility.waitForElementVisible(driver, valueOfInvestment, 10);
+    }
+
+    public void clickRbcEquityLinkedGicsReturnCalculator() {
+        WebElementUtility.clickElement(driver, GICReturns);
+    }
+
+    public void verifyRbcEquityLinkedGicsReturnCalculatorPage() {
+        WebElementUtility.waitForElementVisible(driver, GICReturnsText, 10);
+    }
+
+    public void addRbcEquityLinkedGicsReturnCalculator(String investment) {
+        WebElementUtility.enterText(driver, InitialInvestmentAmount, investment);
+    }
+
+    public void clickCalculateRbc() {
+        WebElementUtility.clickElement(driver, returnValue);
+    }
+
+    public void checkCalculateRbc() {
+        WebElementUtility.waitForElementVisible(driver, graf, 10);
+    }
+
+
 }
 

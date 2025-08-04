@@ -7,10 +7,11 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = "src/test/resources/Features",
-        glue = {"helpers","org.RbcRoyalBank_StepDefination"},
+        glue = "org.RbcRoyalBank_StepDefination",
         plugin = {"pretty", "html:target/cucumber-report.html"},
-        monochrome = true)
-public class CucumberTestRunner  extends AbstractTestNGCucumberTests {
+        monochrome = true
+)
+public class CucumberTestRunner extends AbstractTestNGCucumberTests {
 
     @Override
     @DataProvider(parallel = true)

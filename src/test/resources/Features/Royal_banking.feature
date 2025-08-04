@@ -9,13 +9,13 @@ Feature: Investment Performance Snapshot in Royal Bank in mutual funds
     When user navigate the Mutual Funds window page
     And user click on the option Investment Performance Snapshot
     Then user navigate the Investment Performance Snapshot page
-    And user Add fund to view performance <Investment> <contribution> <withdrawal>
+    And user Add fund to view performance "<Investment>" and "<contribution>" and "<withdrawal>"
     And user click on the View Fund performance
     Then user check the portfolio performance on Investment Performance Snapshot
 
     Examples:
       | Investment | contribution | withdrawal |
-      | "500000"   | "5000"       | "1000"     |
+      | 500000   | 5000       | 1000     |
 
 #  Scenario Outline: Investment process in All Investment Tools & calculators
 #    Given the user navigate the mouse into the Investments and click on the All Investment Tools and calculators option

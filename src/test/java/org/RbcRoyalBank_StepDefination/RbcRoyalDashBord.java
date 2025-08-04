@@ -3,34 +3,20 @@ package org.RbcRoyalBank_StepDefination;
 
 
 
-import Utility.*;
-
-import org.openqa.selenium.WebDriver;
+import RbcRoyalBank_Pages.RbcRoyal_DashBordPage;
+import Utility.TestContext;
 import io.cucumber.java.en.Given;
-import org.picocontainer.annotations.Inject;
 
 
-public class RbcRoyalDashBord extends BasePage {
+public class RbcRoyalDashBord{
+    private RbcRoyal_DashBordPage dashBordPage;
 
-    public RbcRoyalDashBord()
-    {
-        super(null);
-            // update  commited
+    public RbcRoyalDashBord(TestContext context) {
+        this.dashBordPage = new RbcRoyal_DashBordPage(context.getDriver());
     }
-
-    public RbcRoyalDashBord(WebDriver driver) {
-        super(driver);
-    }
-
 
     @Given("the user is open the Home page")
-    public void the_user_is_open_the_Home_page()
-    {
-        RbcRoyalDashBord rc=new RbcRoyalDashBord(driver);
-        driver= BrowserLaunchUtility.getLocalDriver("chrome");
-        BrowserUtility.openUrl(driver, "https://www.rbcroyalbank.com/");
-        WebElementUtility.implicitWait(driver,10);
-        BrowserUtility.maximizeWindow(driver);
-        System.out.println("Home page is opened");
-           }
+    public void the_user_is_open_the_Home_page() {
+        dashBordPage.navigateTOHomePage();
+    }
 }

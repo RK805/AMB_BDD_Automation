@@ -12,12 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class WebElementUtility extends BasePage  {
+public class WebElementUtility{
 
 
-    public WebElementUtility(WebDriver driver) {
-        super(driver);
-    }
+
 //    WebDriverManager m= new WebDriverManager(driver);
 //    // Selenium Web Elements Commands
     public static WebElement findElement(WebDriver driver, By locator) {
