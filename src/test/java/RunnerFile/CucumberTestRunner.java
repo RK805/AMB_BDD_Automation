@@ -8,7 +8,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = "src/test/resources/Features",
         glue = "org.RbcRoyalBank_StepDefination",
-        plugin = {"pretty", "html:target/cucumber-report.html"},
+        plugin = { "com.aventstack.chaintest.plugins.ChainTestCucumberListener:" ,"pretty", "html:target/cucumber-report.html"},
         monochrome = true
 )
 public class CucumberTestRunner extends AbstractTestNGCucumberTests {
