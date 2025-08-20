@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class BrowserUtility {
+public class BrowserUtility extends BasePage {
+
+    public BrowserUtility(WebDriver driver) {
+        super(driver);
+    }
+
     // Selenium Browser Initialization
     public static void openUrl(WebDriver driver, String url) {
         driver.get(url);
@@ -15,8 +20,11 @@ public class BrowserUtility {
     public static void maximizeWindow(WebDriver driver) {
         driver.manage().window().maximize();
     }
-    public static void closeBrowser(WebDriver driver) {
+    public static void QuitBrowser(WebDriver driver) {
         driver.quit();
+    }
+    public static void closeBrowser(WebDriver driver) {
+        driver.close();
     }
 
     // Selenium Browser Commands
@@ -44,16 +52,20 @@ public class BrowserUtility {
         driver.switchTo().frame(index);
     }
     public static void switchToFrameByNameOrId(WebDriver driver, String nameOrId) {
+
         driver.switchTo().frame(nameOrId);
     }
     public static void switchToFrameByElement(WebDriver driver, By locator) {
+
         driver.switchTo().frame(driver.findElement(locator));
     }
     public static void switchToDefaultContent(WebDriver driver) {
+
         driver.switchTo().defaultContent();
     }
     // tabs
     public static void switchToTabByIndex(WebDriver driver, int tabIndex) {
+
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabIndex));
     }

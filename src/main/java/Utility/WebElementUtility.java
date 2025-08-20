@@ -27,6 +27,9 @@ public class WebElementUtility{
     public static boolean isElementDisplayed(WebDriver driver, By locator) {
         return driver.findElement(locator).isDisplayed();
     }
+    public static void  getTextPageTitle(WebDriver driver, String title) {
+        String titelOfThePage= driver.getTitle();
+    }
     public static boolean isElementEnabled(WebDriver driver, By locator) {
         return driver.findElement(locator).isEnabled();
     }
@@ -39,11 +42,15 @@ public class WebElementUtility{
     public static String getElementText(WebDriver driver, By locator) {
         return driver.findElement(locator).getText();
     }
+    public static void getElementTEXT(WebDriver driver, By locator) {
+         driver.findElement(locator).getText();
+    }
     public static void clearElement(WebDriver driver, By locator) {
         driver.findElement(locator).clear();
     }
     public static void sendkeysToElement(WebDriver driver, By locator, String keys) {
         WebElement element = driver.findElement(locator);
+        element.click();
         element.clear();
         element.sendKeys(keys);
     }
@@ -137,6 +144,34 @@ public class WebElementUtility{
     }
     public static void  implicitWait(WebDriver driver, int timeoutSeconds) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeoutSeconds));
+    }
+
+    // srolling options
+    public static void  scrollingToElementofAPage(WebDriver driver,By locator) {
+        JavascriptExecutor js= (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", locator);
+    }
+    public static void scrollToElement(WebDriver driver, By locator) {
+        WebElement element = driver.findElement(locator);
+        if (driver instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        } else {
+            System.out.println("Driver does not support JavascriptExecutor. Cannot scroll to element.");
+        }
+    }
+// list of elements
+    public static void ListOfElement(WebDriver driver, By locator,String text) {
+        List<WebElement> elements = driver.findElements(locator);
+        for (WebElement element : elements) {
+            if (element.getText().trim().equals(text)) {
+                System.out.println("Element found: " + element.getText());
+                element.click();
+                break;
+            }
+        }
+    }
+    {
+
     }
 
 }
