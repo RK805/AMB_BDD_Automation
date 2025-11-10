@@ -89,7 +89,7 @@ public class RbcRoyal_personalLoansPage
         if (result.contains("Please enter a valid loan amount")) {
             System.out.println("Error message displayed: " + result);
         } else {
-            System.out.println("Result Amount: " + result);
+            System.out.println("Result Amount: "+ result);
         }
     }
 }
