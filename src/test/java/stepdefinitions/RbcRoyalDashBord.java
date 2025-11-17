@@ -1,10 +1,7 @@
-package org.RbcRoyalBank_StepDefination;
+package stepdefinitions;
 
-
-
-
-import RbcRoyalBank_Pages.RbcRoyal_DashBordPage;
-import Utility.TestContext;
+import pages.RbcRoyal_DashBordPage;
+import utilities.TestContext;
 import io.cucumber.java.en.Given;
 
 

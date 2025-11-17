@@ -1,15 +1,23 @@
-package RbcRoyalBank_Pages;
+package pages;
 
-import Utility.WebElementUtility;
+import base.BasePage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import utilities.WebElementUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class RbcRoyal_personalLoansPage
+public class RbcRoyal_personalLoansPage extends BasePage
 {
-    private WebDriver driver;
+
+    private static final Logger log = LogManager.getLogger(RbcRoyal_personalLoansPage.class);
+
     public RbcRoyal_personalLoansPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
+
+//
+
 
     public String  getTitle() {
         return   driver.getTitle();
