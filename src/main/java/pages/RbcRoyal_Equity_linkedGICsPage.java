@@ -1,20 +1,22 @@
-package RbcRoyalBank_Pages;
+package pages;
 
-import Utility.WebElementUtility;
-import org.openqa.selenium.By;
+//import Utility.BasePage;
+import base.BasePage;
 import org.openqa.selenium.WebDriver;
+import utilities.WebElementUtility;
+import org.openqa.selenium.By;
 
-public class RbcRoyal_Equity_linkedGICsPage {
-    private WebDriver driver;
-    public RbcRoyal_Equity_linkedGICsPage(WebDriver driver) {
-        this.driver = driver;
-    }
+public class RbcRoyal_Equity_linkedGICsPage extends BasePage {
+
 
     public static By log = By.xpath("//h2[@class='accordion-title active']");
     public static By initialInvestment = By.xpath("//div[@id='principal-container']//input[@id='principalamount']");
-    public static By GICDate = By.xpath("//div[@id='date-container']//input[@id='investmentdate']");
+    public static By GICDate = By.xpath("//div[@id='date-container']//input[@class='date-picker-btn']");
+    public static By yearselect = By.xpath("//div[@class='datepicker--cells datepicker--cells-years']//div");
+    public static By monthselect = By.xpath("//div[@class='datepicker--cells datepicker--cells-months']//div");
+    public static By dateselect = By.xpath("//div[@class='datepicker--cells datepicker--cells-days']//div");
     public static By MmarketSmartRedio = By.xpath("//label[contains(@data-dig-label,'MarketSmart GIC Guaranteed Minimum Return')]");
-    public  static By USMarketSmartGICRedio= By.xpath("//label[contains(@data-dig-label,'U.S. MarketSmart GIC')] ");
+    public static By USMarketSmartGICRedio= By.xpath("//label[contains(@data-dig-label,'U.S. MarketSmart GIC')] ");
     public static By GICsTermYearsRedio = By.xpath("//label[contains(@data-dig-label,'GIC Return Calculator - Term - 5 years')]");
     public static By CalculateReturnValue = By.xpath("//button[text()='Calculate Return Value']");
 
@@ -25,6 +27,10 @@ public class RbcRoyal_Equity_linkedGICsPage {
     public static By IBL = By.xpath("//div[@class='grid-one-third type-guaranteed']//p[@class='ibl-value']");
     public static By currentIndexValue = By.xpath("//div[@class='grid-one-third type-guaranteed']//p[@class='isl-value']");
 
+    public RbcRoyal_Equity_linkedGICsPage(WebDriver driver) {
+        super(driver);
+    }
+
 
     public void enterInitialInvestment(String investment) {
         WebElementUtility.implicitWait(driver, 5);
@@ -33,15 +39,17 @@ public class RbcRoyal_Equity_linkedGICsPage {
         WebElementUtility.sendkeysToElement(driver, initialInvestment, investment);
     }
 
-    public void enterGICDate(String date) {
+    public void enterGICDate() {
         WebElementUtility.implicitWait(driver, 5);
         WebElementUtility.clickElement(driver, GICDate);
-        WebElementUtility.sendkeysToElement(driver, GICDate, date);
+        WebElementUtility.ListOfElement(driver,yearselect,"2025");
+        WebElementUtility.ListOfElement(driver,monthselect,"Oct");
+        WebElementUtility.ListOfElement(driver,dateselect,"14");
     }
 
     public void clickMarketSmartRedio() {
         WebElementUtility.implicitWait(driver, 5);
-        WebElementUtility.clickElement(driver, MmarketSmartRedio);
+        WebElementUtility.selectOption(driver, MmarketSmartRedio);
     }
 
     public void clickUSMarketSmartGICRedio() {

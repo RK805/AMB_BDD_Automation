@@ -12,6 +12,3 @@ Feature: rbc Royal Bank Loans
     And the user should see the Personal loan application form
     And the user click on the Continue button
     Then the user should see the Personal loan application form with error message
-#    Examples:
-#      | amount |
-#      | 500000 |
