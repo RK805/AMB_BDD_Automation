@@ -1,5 +1,6 @@
-#Feature: Login Feature
-#
-#  Scenario: Successful login
-#    Given user opens login page
-##    And user enters username "admin" and password "admin123"
+Feature: Login Feature
+
+  Scenario: Successful login
+    Given user opens login page
+    And user enters username and password
+    Then close the Browser

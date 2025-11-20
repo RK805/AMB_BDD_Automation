@@ -1,0 +1,96 @@
+# ===== Maven / Java =====
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+*.ear
+
+# ===== IDEs =====
+# IntelliJ
+/.idea/
+/*.iml
+/out/
+
+# Eclipse
+/.classpath
+/.project
+/.settings/
+/.recommenders/
+
+# VS Code
+.vscode/
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ===== Logs / temp files =====
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# ===== Test artifacts / reports =====
+/reports/
+/reports-html/
+/reports-extentreports/
+/extent-reports/
+/target/surefire-reports/
+/target/failsafe-reports/
+/target/cucumber-reports/
+/target/cucumber-html-reports/
+/allure-results/
+/allure-report/
+/target/allure-results/
+/target/allure-report/
+/test-output/
+/test-output/screenshots/
+/screenshots/
+
+# ===== Cucumber / TestNG specifics =====
+/cucumber-reports/
+/cucumber-html-reports/
+/testng-results.xml
+
+# ===== WebDriver / drivers / binaries =====
+# WebDriverManager caches (optional)
+/webdrivermanager/
+/.ghostdriver.log
+*.exe
+*.zip
+***chromedriver*
+***geckodriver*
+***msedgedriver*
+
+# ===== Secrets / environment files =====
+.env
+*.properties.secret
+*.key
+*.pem
+secrets.yml
+credentials.json
+
+# ===== Build tool wrappers / caches =====
+.mvn/
+.gradle/
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ===== Node / frontend (if present) =====
+/node_modules/
+/dist/
+/build/
+/npm-debug.log
+yarn-error.log
+
+# ===== Misc =====
+*.iml
+.idea_modules/
+.project
+*.class
+coverage/

@@ -1,21 +1,21 @@
 package pages;
 
-import base.BasePage;
 import utilities.WebElementUtility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class AccountCreated_Page extends BasePage {
+public class AccountCreated_Page  {
 
 	private static final Logger log = LogManager.getLogger(AccountCreated_Page.class);
 	
     public static By CheckTheCreatAccountConfimMassage = By.xpath("//h2[@data-qa='account-created']//parent::div//a[text()='Continue']");
 	public static By checkTheDeleteAccount = By.xpath("//h2[@data-qa='account-deleted']//parent::div//a[text()='Continue']");
 
+	protected WebDriver driver;
 	public AccountCreated_Page(WebDriver driver) {
-		super(driver);
+			this.driver=driver;
 	}
 
 

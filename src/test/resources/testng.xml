@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="AMB Suite" parallel="tests" thread-count="3">
+
+    <!-- Chrome Test -->
+    <test name="Chrome Test">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="env" value="local"/>
+        <classes>
+            <class name="runners.CucumberTestRunner"/>
+        </classes>
+    </test>
+
+<!--    &lt;!&ndash; Firefox Test &ndash;&gt;-->
+<!--    <test name="Firefox Test">-->
+<!--        <parameter name="browser" value="firefox"/>-->
+<!--        <parameter name="env" value="local"/>-->
+<!--        <classes>-->
+<!--            <class name="runners.CucumberTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash; Edge Test &ndash;&gt;-->
+<!--    <test name="Edge Test">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <parameter name="env" value="local"/>-->
+<!--        <classes>-->
+<!--            <class name="runners.CucumberTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+</suite>

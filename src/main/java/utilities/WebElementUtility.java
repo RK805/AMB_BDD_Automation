@@ -1,4 +1,5 @@
-package Utility;
+package utilities;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,9 +15,7 @@ import java.util.List;
 
 public class WebElementUtility{
 
-
-
-//    WebDriverManager m= new WebDriverManager(driver);
+    //    WebDriverManager m= new WebDriverManager(driver);
 //    // Selenium Web Elements Commands
     public static WebElement findElement(WebDriver driver, By locator) {
         return driver.findElement(locator);
@@ -27,8 +26,8 @@ public class WebElementUtility{
     public static boolean isElementDisplayed(WebDriver driver, By locator) {
         return driver.findElement(locator).isDisplayed();
     }
-    public static void  getTextPageTitle(WebDriver driver, String title) {
-        String titelOfThePage= driver.getTitle();
+    public static String  getTextPageTitle(WebDriver driver, String title) {
+        return driver.getTitle();
     }
     public static boolean isElementEnabled(WebDriver driver, By locator) {
         return driver.findElement(locator).isEnabled();
@@ -36,6 +35,7 @@ public class WebElementUtility{
     public static boolean isElementSelected(WebDriver driver, By locator) {
         return driver.findElement(locator).isSelected();
     }
+
     public static void clickElement(WebDriver driver, By locator) {
         driver.findElement(locator).click();
     }
@@ -43,7 +43,7 @@ public class WebElementUtility{
         return driver.findElement(locator).getText();
     }
     public static void getElementTEXT(WebDriver driver, By locator) {
-         driver.findElement(locator).getText();
+        driver.findElement(locator).getText();
     }
     public static void clearElement(WebDriver driver, By locator) {
         driver.findElement(locator).clear();
@@ -128,6 +128,10 @@ public class WebElementUtility{
         new Actions(driver).dragAndDrop(driver.findElement(source), driver.findElement(target)).perform();
     }
 
+    public static void shortWait(WebDriver driver) throws InterruptedException {
+        Thread.sleep(5000);
+    }
+
     // Selenium Synchronization Commands
     public static WebElement waitForElementVisible(WebDriver driver, By locator, int timeoutSeconds) {
         return new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds))
@@ -159,7 +163,7 @@ public class WebElementUtility{
             System.out.println("Driver does not support JavascriptExecutor. Cannot scroll to element.");
         }
     }
-// list of elements
+    // list of elements
     public static void ListOfElement(WebDriver driver, By locator,String text) {
         List<WebElement> elements = driver.findElements(locator);
         for (WebElement element : elements) {
@@ -170,8 +174,18 @@ public class WebElementUtility{
             }
         }
     }
+    public static void selectOption(WebDriver driver, By locator)
     {
+        WebElement radioButton = driver.findElement(locator);
+        boolean isSelected = radioButton.isSelected();
 
+        // Print the result
+        if (isSelected) {
+            System.out.println("The radio button is selected.");
+        } else {
+            radioButton.click();
+            System.out.println("The radio button is NOT selected.");
+        }
     }
 
 }
